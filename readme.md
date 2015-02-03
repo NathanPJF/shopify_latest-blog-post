@@ -2,8 +2,8 @@
 
 Show either:
 
-* A) your store's most recent blog post, or
-* B) each of your store's blog's most recent blog post.
+* A) your store's most recent blog post regardless of which blog it came from, or
+* B) each of your blog's most recent blog post together in a group.
 
 ## Some background
 
