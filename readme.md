@@ -14,16 +14,16 @@ So until that becomes a reality, here's some code snippets you can use to do som
 
 ## Case A: Your store's most recent blog post
 
-## Getting started
+### Getting started
 
 * Make a new Snippet called **latest-post.liquid**
 * Call that Snippet in whatever template or other Snippet you'd like using `{% include 'latest-post' %}`
 
-## latest-post.liquid
+### latest-post.liquid
 
 We need to grab the most recent blog post from each of our blogs so we can compare them and find out which one has the most recent post.
 
-### Step 1: Gather information on each blog's most recent post
+#### Step 1: Gather information on each blog's most recent post
 
 Inside this new Snippet, first write the following code:
 
@@ -46,7 +46,7 @@ To find the URL from your store's dashboard, click "Blog Posts", then "Manage Bl
 ![http://take.ms/SF685](http://take.ms/SF685)
 
 
-### Step 2: Determine which blog has the most recent published_at value
+#### Step 2: Determine which blog has the most recent published_at value
 
 The next block of code to paste is this:
 
@@ -75,7 +75,7 @@ What this does is break up the long string of information gathered from Step 1 i
 
 In the end, we end up knowing which blog has the most recent article and identify it by its handle - which is set to `{{ latest_blog }}`.
 
-### Step 3: Display the most recent article's information
+#### Step 3: Display the most recent article's information
 
 The next block of code to paste is this:
 
@@ -96,7 +96,7 @@ This block of code is mostly HTML and the write up is largely a suggestion - cha
 
 You can also use any of [blog's liquid objects](http://docs.shopify.com/themes/liquid-documentation/objects/blog) as long as you write `blogs[latest_blog]` instead.  i.e. `{{ blogs[latest_blog].title }}`
 
-## Demonstration
+### Demonstration
 
 Let's say I want to show the most recent post in a sidebar on my store's Pages.
 
