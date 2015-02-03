@@ -180,6 +180,8 @@ This time when I display the article's content, I want to limit the amount of te
 
 This time I want to show my newly made **latest-post-loop** Snippet in page.liquid.
 
+####page.liquid
+
 ```
 <div class="grid">
   <div class="grid__item large--one-third">
@@ -197,7 +199,8 @@ This time I want to show my newly made **latest-post-loop** Snippet in page.liqu
 
 ```
 
+#### Result
 ![http://take.ms/tcPmJ](http://take.ms/tcPmJ)
 
-**Beautiful.***
+**Beautiful.**
 
