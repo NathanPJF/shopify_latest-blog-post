@@ -80,16 +80,15 @@ In the end, we end up knowing which blog has the most recent article and identif
 The next block of code to paste is this:
 
 ```
-<div class="latest-post">
-  <h3>Most recent post</h3>
-  {% for article in blogs[latest_blog].articles limit: 1%}
-      <article>
-        <h3><a href= "{{ article.url }}">{{ article.title }}</a></h3>
-        <p><span class="date" style="display: block;">Posted: <em>{{ article.published_at | date: "%B %d %Y" }}</em> in <a href="{{ blogs[latest_blog].url }}">{{ blogs[latest_blog].title }}</a></span></p>
-        <section>{{ article.excerpt_or_content }}</section>
-      </article>
-  {% endfor %}
-</div>
+<article>
+{% for article in blogs[latest_blog].articles limit: 1 %}
+  <h3><a href= "{{ article.url }}">{{ article.title }}</a></h3>
+
+  <p><span class="date" style="display: block;">Posted: <em>{{ article.published_at | date: "%B %d %Y" }}</em> in <a href="{{ blogs[latest_blog].url }}">{{ blogs[latest_blog].title }}</a></span></p>
+
+  <section>{{ article.excerpt_or_content }}</section>
+{% endfor %}
+</article>
 ```
 
 This block of code is mostly HTML and the write up is largely a suggestion - change it to suit your needs.  What's important to know, is with this set up you can use an of [article's liquid objects](http://docs.shopify.com/themes/liquid-documentation/objects/article).
@@ -100,7 +99,7 @@ You can also use any of [blog's liquid objects](http://docs.shopify.com/themes/l
 
 Let's say I want to show the most recent post in a sidebar on my store's Pages.
 
-![http://take.ms/2SlfT}(http://take.ms/2SlfT)
+![http://take.ms/2SlfT](http://take.ms/2SlfT)
 
 In my **pages.liquid** template, I'm going to call my new Snippet with `{% include 'latest-post' %}`.  The template below is using [Shopify's Timber framework](http://shopify.github.io/Timber/), but you can adapt it to what ever you'd like.
 

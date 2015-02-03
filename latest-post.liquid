@@ -1,0 +1,38 @@
+{% assign blog_handles = "news;fashion-report;dopeness" %}
+{% assign blog_list = blog_handles | split: ';' %}
+{% assign article_list = '' %}
+
+{% for blog_handle in blog_list %}
+  {% for article in blogs[blog_handle].articles limit: 1 %}
+    {% capture article_list %}{{ article_list }}%%%{{ blog_handle }}@%{{ article.published_at }}{% endcapture %}
+  {% endfor %}
+{% endfor %}
+
+{% assign article_array = article_list | split: '%%%'%}
+
+{% assign latest_date = '' %}
+{% assign latest_blog = '' %}
+
+
+{% for article_set in article_array %}
+  {% unless forloop.first %}
+
+    {% assign article_item = article_set | split: '@%' %}
+
+    {% if article_item[1] > latest_date %}
+      {% assign latest_blog = article_item[0] %}
+      {% assign latest_date = article_item[1] %}
+    {% endif %}
+
+  {% endunless %}
+{% endfor %}
+
+<article>
+{% for article in blogs[latest_blog].articles limit: 1 %}
+  <h3><a href= "{{ article.url }}">{{ article.title }}</a></h3>
+
+  <p><span class="date" style="display: block;">Posted: <em>{{ article.published_at | date: "%B %d %Y" }}</em> in <a href="{{ blogs[latest_blog].url }}">{{ blogs[latest_blog].title }}</a></span></p>
+
+  <section>{{ article.excerpt_or_content }}</section>
+{% endfor %}
+</article>
