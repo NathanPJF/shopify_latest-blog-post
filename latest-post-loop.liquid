@@ -1,8 +1,5 @@
 {% assign blog_handles = "news;fashion-report;dopeness" %}
 {% assign blog_list = blog_handles | split: ';' %}
-{% assign article_list = '' %}
-
-<h3>Most recent post</h3>
 
 {% for blog_handle in blog_list %}
 
@@ -19,7 +16,6 @@
   {% endfor %}
 
 {% endfor %}
-
 
 {% comment %}
 

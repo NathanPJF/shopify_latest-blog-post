@@ -130,7 +130,74 @@ The most recent blog post is **Winter is coming**, so let's see if that's what s
 
 **Nailed it.**
 
+## Case B: Each blog's most recent post
 
+A bit simpler that Case A, this time we don't need to compare each article's published_at date.
 
+### Getting started
 
+* Make a new Snippet called **latest-post.liquid**
+* Call that Snippet in whatever template or other Snippet you'd like using `{% include 'latest-post-loop' %}`
+
+### latest-post-loop.liquid
+
+#### Step 1: Gather the handles of all your blogs
+
+Start the Snippet with the following block of code:
+
+```
+{% assign blog_handles = "news;fashion-report;dopeness" %}
+{% assign blog_list = blog_handles | split: ';' %}
+```
+
+Something to note: This snippet will display the most recent article for each blog, but it won't sort the blogs in order of recency.  So the articles will show up in the same order that you write the blog handles in `{% assign blog_handles = "..." %}`
+
+#### Step 2: Display the first article of each blog
+
+```
+{% for blog_handle in blog_list %}
+
+  {% for article in blogs[blog_handle].articles limit: 1%}
+
+    <article>
+      <h3><a href= "{{ article.url }}">{{ article.title }}</a></h3>
+      <p><span class="date" style="display: block;">Posted: <em>{{ article.published_at | date: "%B %d %Y" }}</em> in <a href="{{ blogs[blog_handle].url }}">{{ blogs[blog_handle].title }}</a></span></p>
+      <section>{{ article.content | strip_html | truncatewords: 10 }}</section>
+    </article>
+
+    <hr class="divider" />
+
+  {% endfor %}
+
+{% endfor %}
+```
+
+This block of code has nested for loops - which can be a bit of a trick to understand.  For each **blog_handle**, I need to look at that blog's articles.  However, I'm limiting my article check to just the first one I encounter.
+
+This time when I display the article's content, I want to limit the amount of text shown on the screen to keep the sidebar compact looking.  To do this, I use `{{ article.content | strip_html | truncatewords: 10 }}`.  I need to strip the HTML out, otherwise HTML in my blog article will be counted against my character/word limit.
+
+### Demonstration
+
+This time I want to show my newly made **latest-post-loop** Snippet in page.liquid.
+
+```
+<div class="grid">
+  <div class="grid__item large--one-third">
+    {% include 'latest-post-loop' %}
+  </div>
+
+  <div class="grid__item large--two-thirds">
+    <h1>{{ page.title }}</h1>
+
+    <div class="rte">
+      {{ page.content }}
+    </div>
+  </div>
+</div>
+
+```
+
+![http://take.ms/tcPmJ](http://take.ms/tcPmJ)
+
+**Beautiful.***
 
