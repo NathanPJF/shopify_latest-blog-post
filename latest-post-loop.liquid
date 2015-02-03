@@ -1,4 +1,11 @@
-{% assign blog_handles = "news;fashion-report;dopeness" %}
+{% comment %}
+
+  Write out the handles of all your blogs in a semi-colon
+  separated list where it says {% assign blog_handles = "..." %}
+
+{% endcomment %}
+
+{% assign blog_handles = "handle-1;handle-2;handle-3" %}
 {% assign blog_list = blog_handles | split: ';' %}
 
 {% for blog_handle in blog_list %}
