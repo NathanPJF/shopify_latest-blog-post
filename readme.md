@@ -16,13 +16,13 @@ If you are *really keen* on sorting your blogs, though, I invite you to check ou
 
 ## Code Time!
 
-Show either:
+These are two distinct use cases:
 
-A) your store's most recent blog post regardless of which blog it came from, or
+A) show your store's most recent blog post regardless of which blog it came from, or
 
-B) each of your blogs' most recent blog post together in a group.
+B) show each of your blogs' most recent blog post together in a group.
 
-### Case A: Your store's most recent blog post
+### Case A: Show your store's most recent blog post
 
 #### Getting started
 
